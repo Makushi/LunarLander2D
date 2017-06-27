@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class LanderMovement : MonoBehaviour {
@@ -32,5 +32,9 @@ public class LanderMovement : MonoBehaviour {
 		{
 			rb.MoveRotation(rb.rotation + 50 * Time.fixedDeltaTime);
 		}
+	}
+
+	void OnCollisionEnter2D(Collision2D coll) {
+		
 	}
 }
