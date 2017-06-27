@@ -3,17 +3,13 @@ using UnityEngine.UI;
 using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class LanderMovement : MonoBehaviour {
-
+public class LanderMovement : MonoBehaviour 
+{
 	private Rigidbody2D rb;
-	// Use this for initialization
-	void Start () {
+
+	void Start () 
+	{
 		rb = transform.GetComponent<Rigidbody2D>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 
 	void FixedUpdate()
@@ -32,9 +28,10 @@ public class LanderMovement : MonoBehaviour {
 		{
 			rb.MoveRotation(rb.rotation + 50 * Time.fixedDeltaTime);
 		}
-	}
 
-	void OnCollisionEnter2D(Collision2D coll) {
-		
+		if(Input.GetKey(KeyCode.Escape))
+		{
+			UnityEngine.SceneManagement.SceneManager.LoadScene ("Menu");	
+		}
 	}
 }

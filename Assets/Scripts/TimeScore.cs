@@ -2,8 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class TimeScore : MonoBehaviour {
-
+public class TimeScore : MonoBehaviour 
+{
 	private float score = 0.0f;
 	public Text scoreText;
 	public Text highScoreText;
@@ -18,7 +18,6 @@ public class TimeScore : MonoBehaviour {
 		highScoreText.text = "Current Best : " + PlayerPrefs.GetFloat ("HighScore");
 	}
 
-	// Update is called once per frame
 	void Update () 
 	{
 		score += Time.deltaTime;
@@ -27,6 +26,11 @@ public class TimeScore : MonoBehaviour {
 
 	void SaveHighScore()
 	{
-		PlayerPrefs.SetFloat("HighScore", Mathf.Round(score));
+		float lastScore = PlayerPrefs.GetFloat ("HighScore", 0);
+		if (lastScore == 0 || score < lastScore)
+		{
+			PlayerPrefs.SetFloat ("HighScore", Mathf.Round (score));
+		}
+		PlayerPrefs.SetFloat ("CurrentScore", Mathf.Round (score));
 	}
 }
