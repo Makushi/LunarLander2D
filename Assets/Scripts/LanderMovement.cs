@@ -1,18 +1,28 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
+using System;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class LanderMovement : MonoBehaviour 
 {
 	private Rigidbody2D rb;
+    private int showGauge;
+    public Text speedGauge;
 
 	void Start () 
 	{
 		rb = transform.GetComponent<Rigidbody2D>();
-	}
+        showGauge = PlayerPrefs.GetInt("ShowSpeedGauge");
+        speedGauge.gameObject.SetActive(Convert.ToBoolean(showGauge));
+    }
 
-	void FixedUpdate()
+    void Update()
+    {
+        float speed = rb.velocity.magnitude;
+        speedGauge.text = "Current Speed : " + speed;
+    }
+
+    void FixedUpdate()
 	{
 		if(Input.GetKey(KeyCode.UpArrow))
 		{
